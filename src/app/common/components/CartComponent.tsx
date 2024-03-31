@@ -23,6 +23,10 @@ const CartComponent = () => {
 
     console.log("Selected Element Array", state.selectedItems)
 
+    const proceedeToCheckout = () => {
+        console.log(); 
+    }
+
     return (
         <div className=' flex justify-end h-screen w-full z-20 fixed top-0 right-0 text-black'>
             <div onClick={ closeCartDisplay } className='z-10 backdrop-blur-lg flex justify-end h-screen w-full'>
@@ -66,6 +70,26 @@ const CartComponent = () => {
                             )
                         })
                     }
+                </section>
+                <section className='flex flex-col justify-normal gap-[1rem]' >
+                    <div className='text-white pb-[2px] flex flex-row justify-between border-slate-500 border-b-[1px] mx-4'>
+                        <h2>Taxes</h2>
+                        <h2>0 FCFA</h2>
+                    </div>
+                    <div className='text-white pb-[2px] flex flex-row justify-between border-slate-500 border-b-[1px] mx-4'>
+                        <h2>Shipping</h2>
+                        <h2 className='text-slate-700'>Calculated at checkout</h2>
+                    </div>
+                    <div className='text-white pb-[2px] flex flex-row justify-between border-slate-500 border-b-[1px] mx-4'>
+                        <h2>Total</h2>
+                        <h2>20000 FCFA</h2>
+                    </div>
+                </section>
+                <section className='mx-[1rem]'>
+                    <button onClick={ () => proceedeToCheckout () } className='w-full border-[1px] border-slate-500 flex flex-row justify-center items-center px-[1rem] py-[.5rem] rounded-lg bg-blue-800 text-white'>
+                        <h1 className='text-white'>Proceed to Checkout</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-4 w-4 dark:text-neutral-500"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>
+                    </button>
                 </section>
             </div>
         </div>
