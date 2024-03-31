@@ -24,6 +24,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  background-color: rgb(42, 42, 42);
+  position: relative;
 }
 
 @layer utilities {
