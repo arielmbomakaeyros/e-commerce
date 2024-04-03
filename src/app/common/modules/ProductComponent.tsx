@@ -12,28 +12,25 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 const ProductComponent = () => {
   
   const { state, dispatch } = useContext(EcommerceContext); 
-  // const [ selectedCookies, setSelectedCookie ] = useState ([])
+  const searchParams = useSearchParams ()
+  const writtenSearchParam = new URLSearchParams (searchParams)
+
+  const searchEle = writtenSearchParam.get ("search")
+
+  useEffect (() => {
+    if (searchEle) {
+      dispatch({ type: "FILTERPRODCUTS", payload: searchEle }) 
+    }
+  }, [])
 
   const addQuantity: any = (obj: ProductType) => {
     dispatch({ type: "ADDITEMTOCART", payload: obj })
-
-    // console.log("///////////", state.selectedItems)
-
-    // let data = addProduct (obj, state.selectedItems)
-    // let total_of_all_items = overAllTotal (data)
-
-    // localStorage.setItem("selectedItems", JSON.stringify(data))
-    // localStorage.setItem("totalPrice", JSON.stringify(total_of_all_items))
   }
-
-  // useEffect (() => {
-  //   setSelectedCookie (JSON.parse(window.localStorage.getItem("selectedItems")!))
-  // }, [])
 
   console.log("Selected Element Array", state.selectedItems)
   return (
     <div className="mt-[3rem] grid grid-cols-[repeat(auto-fit,minmax(150px,300px))] justify-center gap-3 relative">
-          { products && products.map ((product: ProductType ) => {
+          { state?.products && state?.products.map ((product: ProductType ) => {
             // const selectedItemsFromLocalStorage = JSON.parse(window.localStorage.getItem("selectedItems")!)
             // const correspondingelectedItems = selectedCookies ? selectedCookies.find((correspondingSel: ProductType) => {
             //   return product.id === correspondingSel?.id
@@ -50,6 +47,7 @@ const ProductComponent = () => {
                 <Link href={{
                   pathname: `/products/${ product?.id }`, 
                   query: correspondingelectedItems ? correspondingelectedItems : product, 
+                  // query: product, 
                 }} className="flex flex-row items-center justify-between border-[1px] border-slate-500 py-2 px-4 w-[90%] rounded-3xl mx-2 mb-[1rem]">
                     <div className="text-[12px] whitespace-nowrap">
                         { truncateText(product?.name, 15) }
